@@ -21,8 +21,8 @@ function AlbumDetailsPage() {
 
   return (
     <section>
-      <h1>Add New Meetup</h1>
-      <AlbumDetails onAddMeetup={addMeetupHandler} />
+      <h1>Album Details</h1>
+      <AlbumDetails album={selectedAlbum}/>
     </section>
   );
 }

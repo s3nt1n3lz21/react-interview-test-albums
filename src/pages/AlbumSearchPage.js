@@ -55,7 +55,7 @@ function AlbumSearchPage() {
             </button>
         </div>
       </div>
-      <AlbumList albums={loadedAlbums} />
+      <AlbumList albums={loadedAlbums}/>
     </section>
   );
 }

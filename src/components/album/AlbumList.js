@@ -2,6 +2,7 @@ import classes from './AlbumList.module.css';
 import AlbumListItem from './AlbumListItem';
 
 function AlbumList(props) {
+
   return (
     <ul className={classes.list}>
       {props.albums.map((album) => (
@@ -12,6 +13,7 @@ function AlbumList(props) {
           artistName={album.artistName}
           collectionName={album.collectionName}
           collectionPrice={album.collectionPrice}
+          className={classes.hover}
         //   image={meetup.image}
         //   title={meetup.title}
         //   address={meetup.address}

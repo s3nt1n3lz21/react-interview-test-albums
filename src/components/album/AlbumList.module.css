@@ -3,3 +3,11 @@
     margin: 0;
     padding: 0;
   }
+
+  .hover {
+
+  }
+
+  .hover:hover {
+      cursor: pointer;
+  }
