@@ -4,14 +4,18 @@ import AlbumListItem from './AlbumListItem';
 function AlbumList(props) {
   return (
     <ul className={classes.list}>
-      {props.meetups.map((meetup) => (
+      {props.albums.map((album) => (
         <AlbumListItem
-          key={meetup.id}
-          id={meetup.id}
-          image={meetup.image}
-          title={meetup.title}
-          address={meetup.address}
-          description={meetup.description}
+          key={album.id}
+          id={album.id}
+          wrapperType={album.wrapperType}
+          artistName={album.artistName}
+          collectionName={album.collectionName}
+          collectionPrice={album.collectionPrice}
+        //   image={meetup.image}
+        //   title={meetup.title}
+        //   address={meetup.address}
+        //   description={meetup.description}
         />
       ))}
     </ul>

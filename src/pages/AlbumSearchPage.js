@@ -20,7 +20,7 @@ function AlbumSearchPage() {
         for (const key in data.results) {
           const album = {
             id: key,
-            ...data[key]
+            ...data.results[key]
           };
 
           albums.push(album);
@@ -50,7 +50,7 @@ function AlbumSearchPage() {
             </button>
         </div>
       </div>
-      <AlbumList meetups={loadedAlbums} />
+      <AlbumList albums={loadedAlbums} />
     </section>
   );
 }

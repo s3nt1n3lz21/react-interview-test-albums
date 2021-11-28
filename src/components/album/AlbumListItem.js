@@ -26,13 +26,11 @@ function AlbumListItem(props) {
   return (
     <li className={classes.item}>
       <Card>
-        <div className={classes.image}>
-          <img src={props.image} alt={props.title} />
-        </div>
         <div className={classes.content}>
-          <h3>{props.title}</h3>
-          <address>{props.address}</address>
-          <p>{props.description}</p>
+          <h3>{props.wrapperType}</h3>
+          <p>{props.artistName}</p>
+          <p>{props.collectionName}</p>
+          <p>{props.collectionPrice}</p>
         </div>
         <div className={classes.actions}>
           <button onClick={toggleFavoriteStatusHandler}>
