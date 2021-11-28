@@ -1,34 +1,35 @@
 import { useState, useEffect } from 'react';
 import AlbumList from '../components/album/AlbumList';
+import classes from './AlbumSearchPage.module.css';
 
 function AlbumSearchPage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadedAlbums, setLoadedAlbums] = useState([]);
 
-  useEffect(() => {
-    setIsLoading(true);
+  function searchAlbums(searchText) {
     fetch(
-      'https://react-getting-started-48dec-default-rtdb.firebaseio.com/meetups.json'
+        'https://itunes.apple.com/search?term=' + searchText,
     )
-      .then((response) => {
+    .then((response) => {
         return response.json();
-      })
-      .then((data) => {
-        const meetups = [];
+    })
+    .then((data) => {
+        console.log('api response: ', data);
+        const albums = [];
 
-        for (const key in data) {
-          const meetup = {
+        for (const key in data.results) {
+          const album = {
             id: key,
             ...data[key]
           };
 
-          meetups.push(meetup);
+          albums.push(album);
         }
 
         setIsLoading(false);
-        setLoadedMeetups(meetups);
-      });
-  }, []);
+        setLoadedAlbums(albums);
+    })
+  }
 
   if (isLoading) {
     return (
@@ -41,7 +42,15 @@ function AlbumSearchPage() {
   return (
     <section>
       <h1>All Albums</h1>
-      <AlbumList meetups={loadedMeetups} />
+      <div className={classes.searchContainer}>
+        <input></input>
+        <div className={classes.actions}>
+            <button onClick={searchAlbums}>
+                Search
+            </button>
+        </div>
+      </div>
+      <AlbumList meetups={loadedAlbums} />
     </section>
   );
 }
