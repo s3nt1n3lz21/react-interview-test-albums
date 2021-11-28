@@ -5,10 +5,11 @@ import classes from './AlbumSearchPage.module.css';
 function AlbumSearchPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [loadedAlbums, setLoadedAlbums] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
 
-  function searchAlbums(searchText) {
+  function searchAlbums() {
     fetch(
-        'https://itunes.apple.com/search?term=' + searchText,
+        'https://itunes.apple.com/search?term=' + searchValue,
     )
     .then((response) => {
         return response.json();
@@ -31,6 +32,10 @@ function AlbumSearchPage() {
     })
   }
 
+  function searchChangeHandler(event) {
+    setSearchValue(event.target.value);
+  }
+
   if (isLoading) {
     return (
       <section>
@@ -43,7 +48,7 @@ function AlbumSearchPage() {
     <section>
       <h1>All Albums</h1>
       <div className={classes.searchContainer}>
-        <input></input>
+        <input type='text' name='search' value={searchValue} onChange={searchChangeHandler}></input>
         <div className={classes.actions}>
             <button onClick={searchAlbums}>
                 Search
