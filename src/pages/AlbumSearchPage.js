@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AlbumList from '../components/album/AlbumList';
 import classes from './AlbumSearchPage.module.css';
 
