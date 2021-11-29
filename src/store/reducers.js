@@ -18,7 +18,7 @@ const albumReducer = (state = initialState, action) => {
     case SET_ALBUMS:
         return { ...state, albums: action.albums };
     case SET_SELECTED_ALBUM:
-        return { ...state, selectedAlbum: action.selectedAlbum };
+        return { ...state, selectedAlbum: action.album };
     case ADD_REVIEW:
         newReviews = [...state.reviews];
         newReviews.push(action.review);

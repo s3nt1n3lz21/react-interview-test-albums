@@ -7,13 +7,14 @@ function AlbumList(props) {
     <ul className={classes.list}>
       {props.albums.map((album) => (
         <AlbumListItem
-          key={album.id}
-          id={album.id}
+          key={album.trackId}
+          id={album.trackId}
           wrapperType={album.wrapperType}
           artistName={album.artistName}
           collectionName={album.collectionName}
           collectionPrice={album.collectionPrice}
-          className={classes.hover}
+          className={props.className}
+          onClick={() => props.onClick(album.trackId)}
         //   image={meetup.image}
         //   title={meetup.title}
         //   address={meetup.address}

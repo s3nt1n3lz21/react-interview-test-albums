@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAlbums } from '../store/actions';
+import { setAlbumsAction, setSelectedAlbumAction } from '../store/actions';
 import AlbumList from '../components/album/AlbumList';
 import classes from './AlbumSearchPage.module.css';
+import { useHistory } from 'react-router';
 
 function AlbumSearchPage() {
+  const history = useHistory();
 
   // Component state
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
   // App state
-  const loadedAlbums = useSelector(state => state.albums);
-  function setLoadedAlbums(albums) { dispatch(setAlbums(albums)); }
+  const albums = useSelector(state => state.albums);
+  function setAlbums(albums) { dispatch(setAlbumsAction(albums)); }
+  function setSelectedAlbum(album) { dispatch(setSelectedAlbumAction(album)); }
   const dispatch = useDispatch();
 
   function searchAlbums() {
@@ -25,24 +28,36 @@ function AlbumSearchPage() {
     })
     .then((data) => {
         console.log('api response: ', data);
-        const albums = [];
+        const loadedAlbums = [];
 
         for (const key in data.results) {
-          const album = {
+          const loadedAlbum = {
             id: key,
             ...data.results[key]
           };
 
-          albums.push(album);
+          loadedAlbums.push(loadedAlbum);
         }
 
         setIsLoading(false);
-        setLoadedAlbums(albums);
+        setAlbums(loadedAlbums);
     })
   }
 
   function searchChangeHandler(event) {
     setSearchValue(event.target.value);
+  }
+
+  function itemClickHandler(trackId) {
+    console.log('trackId: ', trackId);
+    console.log('albums: ', albums);
+    const albumIndex = albums.findIndex(
+      album => album.trackId === trackId
+    )
+    console.log('albumIndex: ', albumIndex);
+    console.log('albums[albumIndex]: ', albums[albumIndex]);
+    setSelectedAlbum(albums[albumIndex]);
+    history.push('/details');
   }
 
   if (isLoading) {
@@ -64,7 +79,7 @@ function AlbumSearchPage() {
             </button>
         </div>
       </div>
-      <AlbumList albums={loadedAlbums}/>
+      <AlbumList albums={albums} onClick={itemClickHandler} className={classes.hover}/>
     </section>
   );
 }

@@ -1,19 +1,19 @@
 import AlbumListItem from "./AlbumListItem";
+import classes from './AlbumDetails.module.css';
 
 function AlbumDetails(props) {
-  const album = '';
 
   return (
-    <div>
+    <ul className={classes.list}>
         <AlbumListItem
-          key={album.id}
-          id={album.id}
-          wrapperType={album.wrapperType}
-          artistName={album.artistName}
-          collectionName={album.collectionName}
-          collectionPrice={album.collectionPrice}
+          key={props.album.id}
+          id={props.album.id}
+          wrapperType={props.album.wrapperType}
+          artistName={props.album.artistName}
+          collectionName={props.album.collectionName}
+          collectionPrice={props.album.collectionPrice}
         />
-    </div>
+    </ul>
   );
 }
 
