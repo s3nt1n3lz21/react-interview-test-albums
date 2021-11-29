@@ -1,12 +1,9 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 
 import classes from './MainNavigation.module.css';
-import FavoritesContext from '../../store/favorites-context';
 
 function MainNavigation() {
-  const favoritesCtx = useContext(FavoritesContext);
   const history = useHistory();
 
   return (

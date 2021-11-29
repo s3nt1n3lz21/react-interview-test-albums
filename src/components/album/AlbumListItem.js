@@ -1,15 +1,9 @@
-import { useContext } from 'react';
-
 import Card from '../ui/Card';
 import classes from './AlbumListItem.module.css';
-import FavoritesContext from '../../store/favorites-context';
 import { useHistory } from 'react-router';
 
 function AlbumListItem(props) {
-  const favoritesCtx = useContext(FavoritesContext);
   const history = useHistory();
-
-  const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
 
   function clickItemHandler() {
     history.push('/details');

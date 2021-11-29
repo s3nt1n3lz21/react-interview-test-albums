@@ -1,13 +1,22 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAlbums } from '../store/actions';
 import AlbumList from '../components/album/AlbumList';
 import classes from './AlbumSearchPage.module.css';
 
 function AlbumSearchPage() {
+
+  // Component state
   const [isLoading, setIsLoading] = useState(false);
-  const [loadedAlbums, setLoadedAlbums] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
+  // App state
+  const loadedAlbums = useSelector(state => state.albums);
+  function setLoadedAlbums(albums) { dispatch(setAlbums(albums)); }
+  const dispatch = useDispatch();
+
   function searchAlbums() {
+    setIsLoading(true);
     fetch(
         'https://itunes.apple.com/search?term=' + searchValue,
     )
